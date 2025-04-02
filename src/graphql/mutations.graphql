@@ -32,4 +32,30 @@ query GetAuthor($id: ID!) {
       title
     }
   }
-} 
+}
+
+mutation CreateBook($createBookInput: CreateBookInput!) {
+  createBook(createBookInput: $createBookInput) {
+    id
+    title
+    description
+    publishedAt
+    author {
+      id
+      name
+    }
+  }
+}
+
+mutation UpdateBook($id: ID!, $updateBookInput: UpdateBookInput!) {
+  updateBook(id: $id, updateBookInput: $updateBookInput) {
+    id
+    title
+    description
+    publishedAt
+    author {
+      id
+      name
+    }
+  }
+}

@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Book Management System - Frontend
 
-## Getting Started
+This is a modern web application built with Next.js for managing books, featuring a GraphQL API integration and a beautiful user interface.
 
-First, run the development server:
+## Technical Stack
 
+- **Framework**: [Next.js](https://nextjs.org) 15.2.4
+- **Language**: TypeScript
+- **UI Library**: React 19
+- **Styling**: TailwindCSS
+- **GraphQL Client**: Apollo Client
+- **Form Management**: React Hook Form with Yup validation
+- **Code Generation**: GraphQL Code Generator
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn package manager
+- Access to the GraphQL backend API
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+Create a `.env.local` file in the root directory with the following variables:
+```env
+NEXT_PUBLIC_GRAPHQL_URL=your_graphql_endpoint_url
+```
+
+## Development
+
+1. Generate GraphQL types (first time setup):
+```bash
+npm run codegen
+# or
+yarn codegen
+```
+
+2. Start the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run codegen` - Generate GraphQL types
+- `npm run codegen:watch` - Watch and regenerate GraphQL types on changes
+
+## Project Structure
+
+```
+frontend/
+├── app/                    # Next.js app directory
+├── src/
+│   ├── components/        # Reusable React components
+│   ├── graphql/          # GraphQL queries and mutations
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions and configurations
+│   └── types/            # TypeScript type definitions
+├── public/               # Static assets
+└── package.json          # Project dependencies and scripts
+```
+
+## Features
+
+- Modern and responsive UI with TailwindCSS
+- Type-safe GraphQL operations with code generation
+- Form handling with validation
+- Client-side state management with Apollo Client
+- Server-side rendering capabilities
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Apollo Client Documentation](https://www.apollographql.com/docs/react/)
+- [React Hook Form Documentation](https://react-hook-form.com/)
+- [TailwindCSS Documentation](https://tailwindcss.com/docs)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The application can be deployed on any platform that supports Next.js applications. The recommended deployment platform is [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For more details about deployment, check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).

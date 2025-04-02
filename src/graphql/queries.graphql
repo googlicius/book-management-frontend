@@ -19,4 +19,17 @@ query GetAuthors {
       title
     }
   }
+}
+
+query GetBook($id: ID!) {
+  book(id: $id) {
+    id
+    title
+    description
+    publishedAt
+    author {
+      id
+      name
+    }
+  }
 } 

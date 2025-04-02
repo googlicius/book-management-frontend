@@ -1,11 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useGetAuthorsQuery, GetAuthorsQuery } from '@/gql/graphql';
+import { useGetBooksQuery, GetBooksQuery } from '@/gql/graphql';
 import ListItem from '@/components/ListItem';
 
-export default function AuthorsPage() {
-  const { data, loading, error } = useGetAuthorsQuery({
+export default function BooksPage() {
+  const { data, loading, error } = useGetBooksQuery({
     fetchPolicy: 'cache-and-network',
   });
 
@@ -28,7 +28,7 @@ export default function AuthorsPage() {
     return (
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-          Error loading authors: {error.message}
+          Error loading books: {error.message}
         </div>
       </div>
     );
@@ -37,24 +37,24 @@ export default function AuthorsPage() {
   return (
     <div className="container mx-auto px-4 max-w-4xl">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Authors</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Books</h1>
         <Link
-          href="/authors/new"
+          href="/books/new"
           className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
         >
-          Add New Author
+          Add New Book
         </Link>
       </div>
 
       <div className="bg-white shadow rounded-lg divide-y">
-        {data?.authors.map((author: GetAuthorsQuery['authors'][0]) => (
+        {data?.books.map((book: GetBooksQuery['books'][0]) => (
           <ListItem
-            key={author.id}
-            id={author.id}
-            title={author.name}
-            subtitle={`${author.books?.length ?? 0} ${author.books?.length === 1 ? 'book' : 'books'}`}
-            href={`/authors/${author.id}`}
-            editHref={`/authors/${author.id}/edit`}
+            key={book.id}
+            id={book.id}
+            title={book.title}
+            subtitle={`By ${book.author.name}`}
+            href={`/books/${book.id}`}
+            editHref={`/books/${book.id}/edit`}
           />
         ))}
       </div>

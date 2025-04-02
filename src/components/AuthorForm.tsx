@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { CreateAuthorInput, UpdateAuthorInput } from '@/gql/graphql';
+import { CreateAuthorInput } from '@/gql/graphql';
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),
