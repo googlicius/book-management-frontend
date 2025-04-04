@@ -1,0 +1,41 @@
+# CDK specific
+.cdk.staging/
+cdk.out/
+cdk.context.json
+
+# TypeScript build artifacts
+dist/
+*.tsbuildinfo
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary files
+tmp/
+temp/
