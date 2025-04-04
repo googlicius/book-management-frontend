@@ -48,13 +48,13 @@ new AmplifyDeploymentStack(app, 'NextJsAmplifyDeployment', {
   // Optional parameters with defaults
   appPath: getEnvValue('APP_PATH', ''),  
   prodBranchName: getEnvValue('PROD_BRANCH', 'main'),
-  devBranchName: getEnvValue('DEV_BRANCH', 'develop'),
+  devBranchName: getEnvValue('DEV_BRANCH', ''),
   featureBranchName: getEnvValue('FEATURE_BRANCH_NAME', ''),
   
   // Environment variables
   environmentVariables: {
     // Global environment variables for all environments
-    NODE_ENV: 'production',
+    // NODE_ENV: 'production',
   },
   
   // Production-specific environment variables

@@ -1,8 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as amplify from 'aws-cdk-lib/aws-amplify';
-import * as codebuild from 'aws-cdk-lib/aws-codebuild';
-import * as iam from 'aws-cdk-lib/aws-iam';
 
 export interface AmplifyDeploymentProps extends cdk.StackProps {
   /** Repository owner (username or organization) */
@@ -64,6 +62,7 @@ export class AmplifyDeploymentStack extends cdk.Stack {
       name: appName,
       repository: `https://github.com/${repoOwner}/${repoName}`,
       accessToken: githubToken,
+      platform: 'WEB_COMPUTE',
       buildSpec: `
         version: 1
         frontend:
@@ -83,13 +82,20 @@ export class AmplifyDeploymentStack extends cdk.Stack {
               - .next/cache/**/*
               - .npm/**/*
       `,
+      customRules: [
+        {
+          "source": "/<*>",
+          "status": "404-200",
+          "target": "/index.html"
+        }
+      ],
       environmentVariables: baseEnvVars,
     });
 
     // Create a branch for the production deployment
     if (prodBranchName) {
       const prodEnvVars = [...baseEnvVars, ...convertEnvVars(prodEnvironmentVariables)];
-      const productionBranch = new amplify.CfnBranch(this, 'ProductionBranch', {
+      new amplify.CfnBranch(this, 'ProductionBranch', {
         appId: amplifyApp.attrAppId,
         branchName: prodBranchName,
         enableAutoBuild: true,
@@ -107,7 +113,7 @@ export class AmplifyDeploymentStack extends cdk.Stack {
     // Create a branch for the development deployment
     if (devBranchName) {
       const devEnvVars = [...baseEnvVars, ...convertEnvVars(devEnvironmentVariables)];
-      const developmentBranch = new amplify.CfnBranch(this, 'DevelopmentBranch', {
+      new amplify.CfnBranch(this, 'DevelopmentBranch', {
         appId: amplifyApp.attrAppId,
         branchName: devBranchName,
         enableAutoBuild: true,
