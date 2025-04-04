@@ -35,7 +35,7 @@ if (!repoName) {
 new AmplifyDeploymentStack(app, 'NextJsAmplifyDeployment', {
   env: { 
     account: process.env.CDK_DEFAULT_ACCOUNT, 
-    region: process.env.CDK_DEFAULT_REGION || 'us-east-1'
+    region: process.env.CDK_DEFAULT_REGION
   },
   description: 'Amplify Deployment for NextJS Application',
   
@@ -46,7 +46,6 @@ new AmplifyDeploymentStack(app, 'NextJsAmplifyDeployment', {
   githubToken: githubToken,
   
   // Optional parameters with defaults
-  appPath: getEnvValue('APP_PATH', ''),  
   prodBranchName: getEnvValue('PROD_BRANCH', 'main'),
   devBranchName: getEnvValue('DEV_BRANCH', ''),
   featureBranchName: getEnvValue('FEATURE_BRANCH_NAME', ''),

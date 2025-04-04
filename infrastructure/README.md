@@ -16,6 +16,7 @@ The CDK stack creates:
 - Branch deployments for production, development, and feature branches
 - Environment-specific configurations
 - Automatic deployments when code is pushed to the repository
+- Uses WEB_COMPUTE platform optimized for Next.js applications
 
 ## Configuration
 
@@ -38,7 +39,6 @@ You can configure the deployment using environment variables:
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `APP_PATH` | Path to application in repo | "frontend" |
 | `PROD_BRANCH` | Production branch name | "main" |
 | `DEV_BRANCH` | Development branch name | "develop" |
 | `FEATURE_BRANCH_NAME` | Specific feature branch to deploy | "" (empty = not deployed) |
@@ -95,7 +95,13 @@ When deployed, the infrastructure:
 1. Creates an Amplify application linked to your GitHub repository
 2. Sets up branch deployments with environment-specific variables
 3. Configures automatic builds when code is pushed
-4. Deploys your Next.js application to AWS Amplify hosting
+4. Deploys your Next.js application to AWS Amplify hosting using the WEB_COMPUTE platform optimized for Next.js
+
+The infrastructure is configured specifically for Next.js applications with:
+- WEB_COMPUTE platform setting required for Next.js apps
+- Optimized build settings for Next.js
+- Proper caching of Next.js build artifacts
+- Correct routing configuration for Next.js page and API routes
 
 When you push changes to any configured branch, Amplify automatically:
 1. Detects the change

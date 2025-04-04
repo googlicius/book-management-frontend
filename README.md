@@ -100,6 +100,22 @@ To learn more about the technologies used in this project:
 
 ## Deployment
 
-The application can be deployed on any platform that supports Next.js applications. The recommended deployment platform is [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+The application can be deployed on any platform that supports Next.js applications. This project includes an AWS Amplify deployment configuration.
 
-For more details about deployment, check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+### AWS Amplify Deployment
+
+The `/infrastructure` directory contains AWS CDK code to automate the deployment to AWS Amplify:
+
+1. Set up environment variables in the infrastructure directory
+2. Run the CDK deployment commands (see the infrastructure README)
+3. The application will be automatically deployed when code is pushed to the configured branches
+
+Key features of the AWS Amplify deployment:
+- Uses WEB_COMPUTE platform optimized for Next.js applications
+- Automatic deployments on push to configured branches
+- Environment-specific variables for different branches
+- Optimized build and cache settings
+
+For more details, see the [infrastructure README](./infrastructure/README.md).
+
+For other deployment options, check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).

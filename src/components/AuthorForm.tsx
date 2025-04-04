@@ -74,4 +74,4 @@ export default function AuthorForm({ onSubmit, initialData, isLoading }: AuthorF
       </div>
     </form>
   );
-} 
+}

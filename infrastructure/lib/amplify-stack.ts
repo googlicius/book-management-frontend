@@ -9,8 +9,6 @@ export interface AmplifyDeploymentProps extends cdk.StackProps {
   readonly repoName: string;
   /** Application name shown in AWS console */
   readonly appName: string;
-  /** Path to application code within repository */
-  readonly appPath?: string;
   /** GitHub access token */
   readonly githubToken: string;
   /** Production branch name */
@@ -38,7 +36,6 @@ export class AmplifyDeploymentStack extends cdk.Stack {
       repoOwner,
       repoName,
       appName,
-      appPath = '',
       githubToken,
       prodBranchName = 'main',
       devBranchName = 'develop',
@@ -131,7 +128,7 @@ export class AmplifyDeploymentStack extends cdk.Stack {
     // Optional: Configure a specific feature branch for preview
     if (featureBranchName) {
       const featureEnvVars = [...baseEnvVars, ...convertEnvVars(featureEnvironmentVariables)];
-      const featureBranch = new amplify.CfnBranch(this, 'FeatureBranch', {
+      new amplify.CfnBranch(this, 'FeatureBranch', {
         appId: amplifyApp.attrAppId,
         branchName: featureBranchName,
         enableAutoBuild: true,
